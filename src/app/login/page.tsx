@@ -87,7 +87,33 @@ export default function Login() {
             </div>
           </form>
         </div>
-      </div></>
+      </main>
+
+      {/* ===== FOOTER ===== */}
+      <footer className="bg-white px-6 py-4 shadow-inner flex items-center justify-between">
+        {/* Left Section: Help */}
+        <div>
+          <h4 className="font-bold">Help</h4>
+          <p>Customer Support</p>
+          <p>Terms & Conditions</p>
+          <p>Privacy Policy</p>
+        </div>
+
+        {/* Middle Section: Copyright */}
+        <div className="text-center">
+          <p className="text-sm text-gray-600">
+            © Copyright 2024 Lost and Found
+          </p>
+          <p className="text-sm text-gray-600">All Right Reserved</p>
+        </div>
+
+        {/* Right Section: Contact */}
+        <div>
+          <h4 className="font-bold">Contact</h4>
+          <p>Tel: +94 716520690</p>
+          <p>Email: talkprojects@wrenix.com</p>
+        </div>
+      </footer>
     </div>
   );
 }

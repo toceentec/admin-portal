@@ -1,112 +1,183 @@
-// pages/report-lost.js
-"use client"; // Marks this as a Client Component
+import Layout from '../components/layout';
+import { useState } from 'react';
 
-import Head from 'next/head';
+export default function ReportLostItem() {
+  const [formData, setFormData] = useState({
+    name: '',
+    category: '',
+    date: '',
+    time: '',
+    location: '',
+    description: '',
+    contactMethod: 'email',
+    contactInfo: '',
+  });
 
-export default function ReportLost() {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    // Handle form submission (would connect to backend in real application)
+    console.log('Form submitted:', formData);
+    alert('Your lost item has been reported successfully!');
+    // Reset form or redirect
+  };
+
   return (
-    <div>
-      <Head>
-        <title>Report Lost Item - IFOUND</title>
-      </Head>
-
-      {/* Header */}
-      <header className="bg-white p-4 flex justify-between items-center border-b">
-        <div className="flex items-center">
-          <img src="/bag" alt="IFOUND Logo" className="h-8" /> {/* Replace with your bag image */}
-          <span className="ml-2 text-xl font-bold">IFOUND</span>
-        </div>
-        <nav>
-          <ul className="flex space-x-4">
-            <li><a href="#" className="text-gray-600 hover:text-black">Home</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Lost</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Report Lost</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Found</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Report Found</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Profile</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-black">Sign Out</a></li>
-          </ul>
-        </nav>
-      </header>
-
-      {/* Main Content */}
-      <main className="min-h-screen bg-white flex justify-center items-center p-4">
-        <div className="w-full max-w-md border-2 border-blue-500 p-6 rounded">
-          <h1 className="text-2xl font-bold mb-6 text-center">Report Lost Item</h1>
-          <form>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Name:</label>
-              <input type="text" className="w-full p-2 bg-gray-200 border-none rounded" />
+    <Layout>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Report Lost Item</h1>
+        <p className="text-gray-600">Please provide details about the item you've lost.</p>
+      </div>
+      
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label className="block mb-2 font-medium">Item Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+                placeholder="e.g., Smartphone, Wallet, Keys"
+                required
+              />
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Item:</label>
-              <select className="w-full p-2 bg-gray-200 border-none rounded">
-                <option value="">Select Item</option>
+            
+            <div>
+              <label className="block mb-2 font-medium">Category</label>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+                required
+              >
+                <option value="">Select a category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Personal">Personal Items</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Documents">Documents</option>
+                <option value="Other">Other</option>
               </select>
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Location:</label>
-              <select className="w-full p-2 bg-gray-200 border-none rounded">
-                <option value="">Select Location</option>
+            
+            <div>
+              <label className="block mb-2 font-medium">Date Lost</label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block mb-2 font-medium">Approximate Time</label>
+              <input
+                type="time"
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+              />
+            </div>
+            
+            <div>
+              <label className="block mb-2 font-medium">Location</label>
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+                placeholder="Where did you last see the item?"
+                required
+              />
+            </div>
+            
+            <div>
+              <label className="block mb-2 font-medium">Preferred Contact Method</label>
+              <select
+                name="contactMethod"
+                value={formData.contactMethod}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+                required
+              >
+                <option value="email">Email</option>
+                <option value="phone">Phone</option>
+                <option value="inApp">In-App Notification</option>
               </select>
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Date:</label>
-              <input type="date" className="w-full p-2 bg-gray-200 border-none rounded" />
+            
+            <div>
+              <label className="block mb-2 font-medium">Contact Information</label>
+              <input
+                type="text"
+                name="contactInfo"
+                value={formData.contactInfo}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md"
+                placeholder="Email address or phone number"
+                required
+              />
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Item Description:</label>
-              <textarea className="w-full p-2 bg-gray-200 border-none rounded h-20"></textarea>
+            
+            <div className="md:col-span-2">
+              <label className="block mb-2 font-medium">Description</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                className="w-full p-3 border rounded-md h-32"
+                placeholder="Please provide a detailed description of the item including color, brand, distinguishing features, etc."
+                required
+              />
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium mb-1">Upload Photo:</label>
-              <div className="w-full p-2 bg-gray-200 border-none rounded flex items-center">
-                <span>Upload (click!)</span>
-                <input type="file" className="ml-2 hidden" />
-              </div>
+            
+            <div className="md:col-span-2">
+              <label className="block mb-2 font-medium">Upload Image (Optional)</label>
+              <input
+                type="file"
+                className="w-full p-3 border rounded-md"
+                accept="image/*"
+              />
+              <p className="text-sm text-gray-500 mt-1">
+                Adding an image will help others identify your item more easily.
+              </p>
             </div>
-            <div className="flex justify-between">
-              <button type="submit" className="bg-black text-white px-4 py-2 rounded">Submit</button>
-              <button type="reset" className="bg-gray-300 px-4 py-2 rounded">Reset</button>
-            </div>
-          </form>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white p-4 border-t flex justify-between text-sm text-gray-600">
-        <div>
-          <img src="/bag" alt="Footer Logo" className="h-6 mb-2" /> {/* Replace with your bag image */}
-          <div>
-            <p>Site</p>
-            <p><a href="#" className="hover:text-black">Report Lost</a></p>
           </div>
-        </div>
-        <div>
-          <p>Help Support</p>
-          <p><a href="#" className="hover:text-black">Terms & Conditions</a></p>
-          <p><a href="#" className="hover:text-black">Customer Support</a></p>
-        </div>
-        <div>
-          <p>Links</p>
-          <p><a href="#" className="hover:text-black">Facebook</a></p>
-          <p><a href="#" className="hover:text-black">LinkedIn</a></p>
-        </div>
-        <div>
-          <p>Contact</p>
-          <p>Tel: +1 555-123-4567</p>
-          <p>Email: <a href="mailto:talk@projects.wix.com" className="hover:text-black">talk@projects.wix.com</a></p>
-        </div>
-      </footer>
-
-      <style jsx>{`
-        input, select, textarea {
-          outline: none;
-        }
-        .hidden {
-          display: none;
-        }
-      `}</style>
-    </div>
+          
+          <div className="flex items-center mb-6">
+            <input
+              type="checkbox"
+              id="termsCheck"
+              className="mr-2"
+              required
+            />
+            <label htmlFor="termsCheck">
+              I confirm that all information provided is accurate to the best of my knowledge.
+            </label>
+          </div>
+          
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="bg-red-500 text-white px-8 py-3 rounded-md hover:bg-red-600 transition-colors"
+            >
+              Submit Report
+            </button>
+          </div>
+        </form>
+      </div>
+    </Layout>
   );
 }

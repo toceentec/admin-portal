@@ -1,126 +1,93 @@
-"use client";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function LoginPage() {
+export default function Login() {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-r from-[#fdfcf7] to-[#dff4d6]">
-      {/* ===== HEADER / NAVBAR ===== */}
-      <header className="flex items-center justify-between px-6 py-4">
-        {/* Left: Logo & Title */}
-        <div className="flex items-center space-x-2">
-          {/* Replace '/logo.png' with your actual logo path in /public */}
-          <Image
-            src="/logo.png"
-            alt="I Found Logo"
-            width={40}
-            height={40}
-            className="object-contain"
-          />
-          <div>
-            <h1 className="text-xl font-bold">I Found</h1>
-            <p className="text-sm text-gray-600">Green Clean Tech</p>
+    <><div className="min-h-screen flex" style={{ backgroundColor: '#FAE9E0' }}>
+      <div className="flex-1 flex flex-col">
+        <div className="p-4">
+          <div className="flex items-center">
+            <Image src="/logo.png" alt="Item Retrieval" width={40} height={40} />
+            <h1 className="ml-2 text-xl font-bold">I FOUND</h1>
           </div>
         </div>
-      </header>
-
-      {/* ===== MAIN CONTENT ===== */}
-      <main className="flex flex-1 px-8 pb-8">
-        {/* Left Side: Image & Overlay */}
-        <div className="w-2/3 relative flex items-center justify-center rounded-lg overflow-hidden">
-          {/* Large background image */}
-          <Image
-            src="https://via.placeholder.com/1200x800" // <-- Replace with your own image
-            alt="Lost and Found Background"
-            fill
-            className="object-cover"
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-lg text-white max-w-lg">
-              <h2 className="text-2xl font-bold mb-2">
-                Welcome to Our Item Retrieval Website!
-              </h2>
-              <p className="text-sm mb-2">
-                We’re excited to help you find and recover lost items. Easily
-                report lost belongings, search for found items, and connect with
-                others. Our user-friendly platform aims to reunite you with your
-                lost possessions quickly and efficiently.
-              </p>
-              <p className="text-sm mb-2">
-                Thank you for choosing our service. If you need assistance, feel
-                free to contact us.
-              </p>
-              <p className="text-sm">Happy searching and best of luck!</p>
+        <div className="flex-1 flex items-center justify-center">
+          <div className="relative w-full max-w-lg h-96">
+            <Image
+              src="/laptop-bg.jpg"
+              alt="Welcome"
+              layout="fill"
+              objectFit="cover" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="bg-black bg-opacity-30 p-6 text-white text-center max-w-sm rounded">
+                <h2 className="text-xl mb-4">Welcome to Our Item Retrieval Website!</h2>
+                <p className="mb-4">
+                  We're excited to help you find and recover lost items. Easily report lost belongings, search for found items, and connect with others. Our user-friendly platform aims to reunite you with your lost possessions quickly and efficiently.
+                </p>
+                <p className="mb-2">
+                  Thank you for choosing our service. If you need assistance, feel free to contact us.
+                </p>
+                <p>Happy searching and best of luck!</p>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Right Side: Login Form */}
-        <div className="w-1/3 flex flex-col items-center justify-center p-6">
-          <div className="bg-white w-full p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-bold mb-4">Login</h2>
-
-            {/* User Name */}
-            <label className="block mb-2 font-semibold">User Name</label>
-            <input
-              type="text"
-              className="w-full mb-4 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="User Name"
-            />
-
-            {/* Password */}
-            <label className="block mb-2 font-semibold">Password</label>
-            <input
-              type="password"
-              className="w-full mb-2 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-              placeholder="Password"
-            />
-
-            {/* Buttons */}
-            <div className="flex space-x-4 mt-4">
-              <button className="flex-1 bg-green-500 text-white p-2 rounded hover:bg-green-600 transition-colors">
+        <footer className="p-4 text-center">
+          <div className="flex justify-center space-x-4 mb-2">
+            <Link href="/help">Help</Link>
+            <Link href="/support">Customer Support</Link>
+            <Link href="/terms">Terms & Conditions</Link>
+            <Link href="/privacy">Privacy Policy</Link>
+          </div>
+          <p>© Copyright 2024 Lost and Found</p>
+          <p>All Rights Reserved</p>
+        </></div>
+    </div><div className="w-96 flex items-center justify-center p-8">
+        <div className="w-full bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+          <form>
+            <div className="mb-4">
+              <label className="block mb-2">User Name</label>
+              <input
+                type="text"
+                className="w-full p-2 border rounded" />
+            </div>
+            <div className="mb-6">
+              <label className="block mb-2">Password</label>
+              <div className="relative">
+                <input
+                  type="password"
+                  className="w-full p-2 border rounded"
+                  value="••••••••••" />
+                <button type="button" className="absolute right-2 top-2">
+                  <Image src="/eye-icon.png" alt="Show" width={20} height={20} />
+                </button>
+              </div>
+            </div>
+            <div className="flex justify-between gap-4 mb-4">
+              <button
+                type="submit"
+                className="flex-1 bg-gray-800 text-white py-2 px-4 rounded"
+              >
                 Sign In
               </button>
-              <button className="flex-1 border border-green-500 text-green-500 p-2 rounded hover:bg-green-100 transition-colors">
-                Sign Up
-              </button>
+              <Link href="/register" className="flex-1">
+                <button
+                  type="button"
+                  className="w-full bg-gray-200 py-2 px-4 rounded"
+                >
+                  Sign Up
+                </button>
+              </Link>
             </div>
-
-            {/* Forgot Password */}
-            <div className="text-right mt-2">
-              <a href="#" className="text-sm text-blue-500 underline">
-                forget Password?
-              </a>
+            <div className="text-center">
+              <Link href="/forgot-password" className="text-sm">
+                Forgot Password?
+              </Link>
             </div>
-          </div>
+          </form>
         </div>
-      </main>
-
-      {/* ===== FOOTER ===== */}
-      <footer className="bg-white px-6 py-4 shadow-inner flex items-center justify-between">
-        {/* Left Section: Help */}
-        <div>
-          <h4 className="font-bold">Help</h4>
-          <p>Customer Support</p>
-          <p>Terms & Conditions</p>
-          <p>Privacy Policy</p>
-        </div>
-
-        {/* Middle Section: Copyright */}
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            © Copyright 2024 Lost and Found
-          </p>
-          <p className="text-sm text-gray-600">All Right Reserved</p>
-        </div>
-
-        {/* Right Section: Contact */}
-        <div>
-          <h4 className="font-bold">Contact</h4>
-          <p>Tel: +94 716520690</p>
-          <p>Email: talkprojects@wrenix.com</p>
-        </div>
-      </footer>
+      </div></>
     </div>
   );
 }

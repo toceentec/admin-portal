@@ -118,7 +118,7 @@ export default function LoginPage() {
         <div>
           <h4 className="font-bold">Contact</h4>
           <p>Tel: +94 716520690</p>
-          <p>Email: talkprojects@wrenix.com</p>
+          <p>Email: talkprojectsssssss@wrenix.com</p>
         </div>
       </footer>
     </div>
